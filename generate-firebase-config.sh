@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
 export PROJECT_ID="didi-dito-trevor"
-export APP_ID="1:297715528072:web:3dc906e5609d0a7ebd0a3d"
 
 python main.py --action=getConfig

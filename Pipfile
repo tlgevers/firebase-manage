@@ -6,6 +6,9 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
+requests = "*"
+google-api-python-client = "*"
+oauth2client = "*"
 
 [requires]
 python_version = "3.7"

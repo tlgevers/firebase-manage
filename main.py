@@ -10,7 +10,6 @@ from googleapiclient.discovery import build
 
 
 PROJECT_ID = os.getenv('PROJECT_ID')
-APP_ID = os.getenv('APP_ID')
 BASE_URL = 'https://firebaseremoteconfig.googleapis.com'
 REMOTE_CONFIG_ENDPOINT = 'v1/projects/' + PROJECT_ID + '/remoteConfig'
 REMOTE_CONFIG_URL = BASE_URL + '/' + REMOTE_CONFIG_ENDPOINT
@@ -23,8 +22,6 @@ SCOPES = [
 ]
 
 CONFIG_BASE_URL = "https://firebase.googleapis.com/v1beta1"
-CONFIG_ENDPOINT = "projects/" + PROJECT_ID + "/webApps/" + APP_ID + "/config"
-CONFIG_URL = CONFIG_BASE_URL + '/' + CONFIG_ENDPOINT
 
 # [START retrieve_access_token]
 def _get_access_token():
@@ -71,10 +68,11 @@ def _getConfig():
     service = build("firebase", "v1beta1", http=http)
     projects = service.projects().webApps()
     webapps = projects.list(parent="projects/didi-dito-trevor").execute()
-    webapp_id = webapps["apps"][0]["appId"].encode("utf-8")
+    webapp_id = webapps["apps"][0]["appId"]
     name = "projects/{}/webApps/{}/config".format(PROJECT_ID, webapp_id)
+    print("Getting firebase-config for app {}".format(name))
     config = projects.getConfig(name=name).execute()
-    with open("firebase-config.json") as file:
+    with open("firebase-config.json", "w") as file:
         json.dump(config, file)
 
 
