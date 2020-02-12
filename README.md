@@ -5,14 +5,14 @@ https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.we
 
 pipenv install
 
-or alternatively
-python3 -m venv <path/to/venv>
-pip -r install requirements.txt
+or alternatively  
+ python3 -m venv <path/to/venv>  
+ pip -r install requirements.txt
 
-create service account within GCP and save as service-account.json
-enable roles 💁
-Firebase Admin
-Firebase Authentication Admin
+create service account within GCP and save as service-account.json  
+enable roles 💁  
+ Firebase Admin  
+ Firebase Authentication Admin
 
     EXAMPLE:
 
