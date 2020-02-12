@@ -57,7 +57,6 @@ def _get():
     print(resp.text)
 
 def _getConfig():
-    print(f"getting config {CONFIG_URL}")
     """Retrieve the current Firebase Config template from server.
     Retrieve the current Firebase Config template from server and store it
     locally.
@@ -69,20 +68,15 @@ def _getConfig():
     http = httplib2.Http()
     http = credentials.authorize(http)
     service = build("firebase", "v1beta1", http=http)
-    projects = service.projects().webApps().execute()
-    print(projects)
-    #resp = requests.get(CONFIG_URL, headers)
-
-    #if resp.status_code == 200:
-    #    with io.open('config.json', 'wb') as f:
-    #        f.write(resp.text.encode('utf-8'))
-    #
-    #    print('Retrieved template has been written to config.json')
-    #    print('ETag from server: {}'.format(resp.headers['ETag']))
-    #else:
-    #    print('Unable to get template')
-    #    print(resp.text)
-
+    projects = service.projects().webApps()
+    webapps = projects.list(parent="projects/didi-dito-trevor").execute()
+    webapp_id = webapps["apps"][0]["appId"].encode("utf-8")
+    print(webapp_id)
+    name = "projects/{}/webApps/{}/config".format(PROJECT_ID, webapp_id)
+    print(name)
+    config = projects.getConfig(name=name).execute()
+    print(config)
+    print(type(config))
 
 
 def _listVersions():
