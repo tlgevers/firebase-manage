@@ -3,6 +3,7 @@ import requests
 import io
 import os
 import httplib2
+import json
 
 from oauth2client.service_account import ServiceAccountCredentials
 from googleapiclient.discovery import build
@@ -71,12 +72,10 @@ def _getConfig():
     projects = service.projects().webApps()
     webapps = projects.list(parent="projects/didi-dito-trevor").execute()
     webapp_id = webapps["apps"][0]["appId"].encode("utf-8")
-    print(webapp_id)
     name = "projects/{}/webApps/{}/config".format(PROJECT_ID, webapp_id)
-    print(name)
     config = projects.getConfig(name=name).execute()
-    print(config)
-    print(type(config))
+    with open("firebase-config.json") as file:
+        json.dump(config, file)
 
 
 def _listVersions():
