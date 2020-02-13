@@ -11,8 +11,8 @@ or alternatively
 
 create service account within GCP and save as service-account.json  
 enable roles 💁  
- Firebase Admin  
- Firebase Authentication Admin
+&nbsp;&nbsp;Firebase Admin  
+&nbsp;&nbsp;Firebase Authentication Admin
 
     EXAMPLE:
 
