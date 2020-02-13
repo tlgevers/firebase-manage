@@ -22,7 +22,14 @@ enable roles 💁
 
     gcloud projects add-iam-policy-binding my-project-123 \
     --member serviceAccount:my-sa-123@my-project-123.iam.gserviceaccount.com \
-    --role roles/firebase.admin roles/firebaseauth.admin
+    --role roles/firebase.admin
+
+    gcloud projects add-iam-policy-binding my-project-123 \
+    --member serviceAccount:my-sa-123@my-project-123.iam.gserviceaccount.com \
+    --role roles/firebaseauth.admin
+
+    gcloud iam service-accounts keys create \
+      --iam-account my-iam-account@somedomain.com key.json
 
 ## Finally run:
 
